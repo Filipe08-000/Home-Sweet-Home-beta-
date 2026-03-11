@@ -6,6 +6,12 @@ const pool = new Pool({
 })
 
 pool.query("SELECT NOW()", (err, res) => {
-  console.log(err, res.rows)
+
+  if (err) {
+    console.error("Erro na conexão:", err.message)
+    process.exit()
+  }
+
+  console.log("Conectado! Hora do banco:", res.rows)
   process.exit()
 })
